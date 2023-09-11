@@ -145,7 +145,7 @@ def chat_completions(site):
 
         completion_id = "".join(random.choices(string.ascii_letters + string.digits, k=28))
         completion_timestamp = int(time.time())
-        return {
+        completion_data = {
             "id": f"chatcmpl-{completion_id}",
             "object": "chat.completion",
             "created": completion_timestamp,
@@ -160,10 +160,11 @@ def chat_completions(site):
                 }
             ],
             "usage": {
-                "prompt_tokens": None,
-                "completion_tokens": None,
+                "prompt_tokens": 1,
+                "completion_tokens": 1,
             }
         }
+        return completion_data
     else:
         return Response(streaming(
             model=model,
